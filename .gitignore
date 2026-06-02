@@ -1,0 +1,5 @@
+.claude/
+.deploy-huichingstockdaily/
+.netlify/
+__codex_write_test.txt
+*.zip
