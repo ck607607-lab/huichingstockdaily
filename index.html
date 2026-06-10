@@ -3,557 +3,459 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>自選股交易日早晚分析</title>
+  <title>6檔自選股短線分析｜2026-06-10</title>
   <style>
     :root {
-      --bg: #f4efe7;
-      --panel: rgba(255, 252, 247, 0.9);
-      --panel-strong: #fffaf1;
-      --ink: #1f2430;
-      --muted: #667085;
-      --line: rgba(31, 36, 48, 0.12);
-      --accent: #c55a11;
-      --accent-deep: #7a3410;
-      --up: #0f8b6d;
-      --down: #c2410c;
-      --shadow: 0 20px 60px rgba(92, 61, 27, 0.12);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
+      --bg: #f5efe5;
+      --paper: rgba(255, 251, 245, 0.92);
+      --ink: #1d1a17;
+      --muted: #5e564e;
+      --line: rgba(29, 26, 23, 0.12);
+      --accent: #af3b2f;
+      --accent-2: #0f766e;
+      --warn: #9a3412;
+      --shadow: 0 20px 60px rgba(32, 25, 19, 0.12);
+      --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-family: "Noto Sans TC", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255, 206, 150, 0.32), transparent 28%),
-        radial-gradient(circle at top right, rgba(197, 90, 17, 0.18), transparent 24%),
-        linear-gradient(180deg, #fbf7f0 0%, #f3ede2 55%, #efe6d9 100%);
-      line-height: 1.6;
+        radial-gradient(circle at top left, rgba(175, 59, 47, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.16), transparent 28%),
+        linear-gradient(180deg, #f7f3ed 0%, #efe6d7 100%);
+      line-height: 1.65;
     }
 
-    .wrap {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 56px;
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 24px auto 56px;
+    }
+
+    .hero,
+    .panel,
+    .card,
+    .footer {
+      backdrop-filter: blur(14px);
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow);
     }
 
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(41, 48, 67, 0.96), rgba(122, 52, 16, 0.92));
-      color: #fff;
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow);
+      border-radius: 32px;
+      padding: 28px;
+      display: grid;
+      gap: 18px;
     }
 
-    .hero::after {
+    .hero::before {
       content: "";
       position: absolute;
-      inset: auto -12% -35% auto;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 215, 170, 0.4), transparent 68%);
-      pointer-events: none;
+      inset: auto -48px -48px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(175, 59, 47, 0.18), transparent 70%);
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 6px;
+      border: 1px solid rgba(29, 26, 23, 0.08);
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      font-size: 13px;
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
+
+    h1, h2, h3, p { margin: 0; }
 
     h1 {
-      margin: 18px 0 10px;
-      font-size: clamp(30px, 5vw, 50px);
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: clamp(2rem, 4vw, 3.3rem);
       line-height: 1.08;
+      max-width: 11ch;
     }
 
-    .hero p {
-      max-width: 760px;
-      margin: 0 0 20px;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 15px;
+    .summary {
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 1.02rem;
     }
 
-    .hero-grid,
-    .summary-grid,
-    .cards {
+    .status-grid,
+    .grid,
+    .price-grid {
       display: grid;
       gap: 16px;
     }
 
-    .hero-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-top: 26px;
-    }
-
-    .hero-stat,
-    .panel,
-    .stock-card {
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .hero-stat {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 18px;
-    }
-
-    .hero-stat strong {
-      display: block;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.72);
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-
-    .hero-stat span {
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    .section {
-      margin-top: 22px;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
-
-    .panel h2,
-    .stock-card h3 {
-      margin: 0 0 14px;
-      font-size: 22px;
-      line-height: 1.2;
-    }
-
-    .summary-grid {
-      grid-template-columns: 1.15fr 0.85fr;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      background: rgba(197, 90, 17, 0.08);
-      color: var(--accent-deep);
-      border: 1px solid rgba(197, 90, 17, 0.14);
-    }
-
-    .cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .stock-card {
-      background: var(--panel-strong);
-      border: 1px solid rgba(122, 52, 16, 0.08);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .stock-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      margin-bottom: 16px;
-    }
-
-    .stock-meta {
-      color: var(--muted);
-      font-size: 13px;
+    .status-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       margin-top: 6px;
     }
 
-    .price-box {
-      min-width: 124px;
-      padding: 12px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(31, 36, 48, 0.04);
-      text-align: right;
-    }
-
-    .price-box b {
-      display: block;
-      font-size: 28px;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .delta-up { color: var(--up); }
-    .delta-down { color: var(--down); }
-
-    .thesis {
-      margin: 0 0 14px;
-      color: #353b47;
-      font-size: 15px;
-    }
-
-    .signal {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: rgba(15, 139, 109, 0.08);
-      color: var(--up);
-      border: 1px solid rgba(15, 139, 109, 0.14);
-      margin-bottom: 14px;
-    }
-
-    .signal.cautious {
-      background: rgba(194, 65, 12, 0.08);
-      color: var(--down);
-      border-color: rgba(194, 65, 12, 0.14);
-    }
-
-    .kv {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .kv div {
-      padding: 12px 14px;
-      background: rgba(31, 36, 48, 0.035);
-      border-radius: 14px;
+    .status {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.6);
       border: 1px solid var(--line);
     }
 
-    .kv strong {
+    .status strong {
       display: block;
-      font-size: 12px;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .panel {
+      margin-top: 22px;
+      border-radius: 28px;
+      padding: 24px;
+    }
+
+    .panel h2 {
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+    }
+
+    .macro-list,
+    .levels,
+    .source-list {
+      padding-left: 18px;
       color: var(--muted);
-      margin-bottom: 5px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
     }
 
-    ul {
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
-
-    .risk-list li,
+    .macro-list li,
+    .levels li,
     .source-list li {
-      margin: 6px 0;
+      margin: 10px 0;
     }
 
-    .source-list a {
-      color: var(--accent-deep);
-      text-decoration: none;
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 22px;
     }
 
-    .footnote {
-      margin-top: 14px;
+    .card {
+      border-radius: 24px;
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card h3 {
+      font-size: 1.24rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      background: rgba(175, 59, 47, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(175, 59, 47, 0.12);
+    }
+
+    .price-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+    }
+
+    .metric span {
+      display: block;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 0.82rem;
+      margin-bottom: 4px;
     }
 
-    @media (max-width: 920px) {
-      .hero-grid,
-      .summary-grid,
-      .cards,
-      .kv {
-        grid-template-columns: 1fr;
-      }
-
-      .stock-head {
-        flex-direction: column;
-      }
-
-      .price-box {
-        width: 100%;
-        text-align: left;
-      }
+    .view {
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent-2);
+      background: rgba(15, 118, 110, 0.06);
+      border-radius: 0 16px 16px 0;
     }
 
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100% - 20px, 1180px);
-        padding-top: 18px;
-      }
+    .levels {
+      margin: 0;
+    }
 
-      .hero,
-      .panel,
-      .stock-card {
-        padding: 18px;
-      }
+    .footer {
+      margin-top: 22px;
+      border-radius: 24px;
+      padding: 22px;
+    }
 
-      h1 {
-        font-size: 32px;
-      }
+    .footer a {
+      color: var(--accent);
+      word-break: break-word;
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--warn);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(calc(100% - 20px), var(--max)); }
+      .hero, .panel, .card, .footer { border-radius: 22px; }
+      .hero { padding: 22px; }
+      .panel, .card, .footer { padding: 18px; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <main class="shell">
     <section class="hero">
-      <div class="eyebrow">台北時間執行 · 台股交易日版</div>
-      <h1>自選股下一交易日與一週觀察</h1>
-      <p>2026-06-05 為台股正常交易日。這份看板整合近一週可取得的價格、新聞、產業與重大訊息，聚焦六檔自選股對下一個交易日與未來一週的可能影響，並附上非保證性價位區間。</p>
-      <div class="hero-grid">
-        <div class="hero-stat">
-          <strong>更新日期</strong>
-          <span>2026-06-05</span>
+      <div class="hero-top">
+        <div class="brand">
+          <img src="lily.svg" alt="lily mark">
+          <div>
+            <p class="eyebrow">Taipei Market Daily</p>
+            <h1>6檔自選股短線分析</h1>
+          </div>
         </div>
-        <div class="hero-stat">
-          <strong>交易判定</strong>
-          <span>正常開市</span>
+        <div class="tagline">2026-06-10 收盤版</div>
+      </div>
+      <p class="summary">
+        今天 2026-06-10 是台股正常交易日，下一個交易日為 2026-06-11。加權指數今天收在 43,225.54 點，單日下跌 1,478.90 點，
+        顯示 6 月 9 日反彈後賣壓仍重。這讓成長型標的與原油 ETF 壓力明顯升高，防守資金則回流高股息與長天期美債。
+      </p>
+      <div class="status-grid">
+        <div class="status">
+          <strong>開市判定</strong>
+          2026-06-10 為正常交易日，非國定假日，TWSE 休市表無停市公告。
         </div>
-        <div class="hero-stat">
-          <strong>台股氣氛</strong>
-          <span>高檔震盪</span>
+        <div class="status">
+          <strong>資料基準</strong>
+          六檔價格以 2026-06-10 收盤為主，新聞與產業事件整理最近 1 週。
         </div>
-        <div class="hero-stat">
-          <strong>主要風險</strong>
-          <span>地緣政治與利率</span>
+        <div class="status">
+          <strong>下一交易日</strong>
+          2026-06-11 先看大盤是否止跌，否則高 beta 標的仍不適合追價。
+        </div>
+        <div class="status">
+          <strong>操作前提</strong>
+          下列價位是觀察區，不是保證價；先控制部位，再談進場。
         </div>
       </div>
     </section>
 
-    <section class="section summary-grid">
-      <article class="panel">
-        <h2>盤勢摘要</h2>
-        <p>6 月 4 日台股因中東地緣政治升溫與權值股獲利了結而明顯回檔，加權指數收在 45,677.46 點，三大法人合計賣超約 931.57 億元。短線大盤由急漲轉入震盪，市值型 ETF 對大盤 beta 敏感，高股息與金融權重相對具防禦性，美股科技 ETF 則要同步觀察 Nasdaq 漲勢是否出現擴大型修正。</p>
-        <div class="pill-row">
-          <span class="pill">下一交易日重點：留意反彈量能是否回到權值股</span>
-          <span class="pill">未來一週重點：油價、10 年期美債殖利率、外資賣壓</span>
-          <span class="pill">資料基準：多數價格截至 2026-06-04，00679B 截至 2026-06-03</span>
-        </div>
-      </article>
-
-      <aside class="panel">
-        <h2>六檔清單</h2>
-        <ul>
-          <li>00642U 期元大 S&amp;P 石油</li>
-          <li>00679B 元大美債 20 年</li>
-          <li>2002 中鋼</li>
-          <li>0050 元大台灣 50</li>
-          <li>0056 元大高股息</li>
-          <li>00662 富邦NASDAQ</li>
-        </ul>
-        <p class="footnote">以下價位皆為情境觀察區，不代表保證報酬，也不適合作為單一決策依據。</p>
-      </aside>
-    </section>
-
-    <section class="section cards">
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>00642U 期元大 S&amp;P 石油</h3>
-            <div class="stock-meta">價格基準：2026-06-04 · 商品型 ETF</div>
-          </div>
-          <div class="price-box">
-            <b>29.42</b>
-            <span class="delta-down">-0.66 / -2.19%</span>
-          </div>
-        </div>
-        <div class="signal cautious">短線高波動，但事件溢價未完全消失</div>
-        <p class="thesis">美伊衝突與荷姆茲海峽風險仍讓油價維持高檔，但 6 月 4 日 ETF 已先出現獲利回吐，代表市場開始從「追價戰爭溢價」轉向評估事件是否延續。下一交易日容易先震盪；若油價續強，未來一週仍有再挑戰高點空間。</p>
-        <ul>
-          <li>偏多理由：中東衝突仍推升原油供應風險與通膨預期。</li>
-          <li>偏空理由：原油 ETF 對情緒與期貨轉倉成本敏感，若風險降溫會回檔更快。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>28.80 至 29.40 分批，不追高</div>
-          <div><strong>停利觀察</strong>31.00 / 32.50</div>
-          <div><strong>停損觀察</strong>27.80 跌破不宜戀戰</div>
-          <div><strong>出場條件</strong>油價急跌且 ETF 失守 28.80</div>
-        </div>
-      </article>
-
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>00679B 元大美債 20 年</h3>
-            <div class="stock-meta">價格基準：2026-06-03 · 債券 ETF</div>
-          </div>
-          <div class="price-box">
-            <b>26.49</b>
-            <span class="delta-up">+0.01 / +0.04%</span>
-          </div>
-        </div>
-        <div class="signal">配息在前，但仍受殖利率上行壓力牽制</div>
-        <p class="thesis">00679B 目前最大變數不是台股，而是美債殖利率。6 月 3 日美國 10 年期殖利率升到 4.4946%，代表市場重新計價油價帶來的通膨壓力；殖利率走高對長天期美債價格不利。短線以區間震盪看待，若殖利率回落，未來一週才有較明顯反彈空間。</p>
-        <ul>
-          <li>偏多理由：5 月 22 日除息後，6 月 12 日將發放 0.28 元現金股利，具現金流吸引力。</li>
-          <li>偏空理由：地緣風險若持續推升油價與通膨，美債長端壓力會延續。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>26.20 至 26.50 低接為主</div>
-          <div><strong>停利觀察</strong>27.00 / 27.60</div>
-          <div><strong>停損觀察</strong>25.90</div>
-          <div><strong>出場條件</strong>10 年債殖利率續衝高且價跌破 26</div>
-        </div>
-      </article>
-
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>2002 中鋼</h3>
-            <div class="stock-meta">價格基準：2026-06-04 · 鋼鐵</div>
-          </div>
-          <div class="price-box">
-            <b>19.30</b>
-            <span class="delta-up">+0.05 / +0.26%</span>
-          </div>
-        </div>
-        <div class="signal">基本面改善，屬於慢一步反映型標的</div>
-        <p class="thesis">中鋼 4 月稅前淨利轉正到 4.85 億元，6 月盤價也全面調漲，市場已看到營運反轉曙光。若鋼價續穩、第二季接單不掉，未來一週股價偏向震盪墊高；但中鋼屬低 beta 傳產，不容易像 AI 權值那樣急拉。</p>
-        <ul>
-          <li>偏多理由：4 月營收創 23 個月高點，4 至 6 月接單與價格表現穩定，6 月盤價每公噸調高 500 至 1200 元。</li>
-          <li>偏空理由：能源與原料成本也在高檔，若需求跟不上，毛利改善速度可能受限。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>18.90 至 19.20</div>
-          <div><strong>停利觀察</strong>20.20 / 21.00</div>
-          <div><strong>停損觀察</strong>18.30</div>
-          <div><strong>出場條件</strong>跌回 18.80 下方且量增轉弱</div>
-        </div>
-      </article>
-
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>0050 元大台灣 50</h3>
-            <div class="stock-meta">價格基準：2026-06-04 · 市值型 ETF</div>
-          </div>
-          <div class="price-box">
-            <b>104.15</b>
-            <span class="delta-down">-1.95 / -1.84%</span>
-          </div>
-        </div>
-        <div class="signal">中長線趨勢仍強，短線受權值修正拖累</div>
-        <p class="thesis">0050 在分割後不到一年重返百元，代表市場對台積電與大型權值股的籌碼偏多仍未改變。不過 6 月 4 日大盤重挫、外資賣超擴大，代表下一交易日先看是否止穩而非直接追價；未來一週若外資賣壓收斂，0050 仍有機會重回主升段。</p>
-        <ul>
-          <li>偏多理由：受益人數與長線資金持續成長，台股核心權值仍是主戰場。</li>
-          <li>偏空理由：高檔回檔時，0050 對台積電、聯發科等權值修正最敏感。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>101.00 至 104.00 分批</div>
-          <div><strong>停利觀察</strong>108.00 / 112.00</div>
-          <div><strong>停損觀察</strong>97.50</div>
-          <div><strong>出場條件</strong>外資續大賣且跌破 100 附近支撐</div>
-        </div>
-      </article>
-
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>0056 元大高股息</h3>
-            <div class="stock-meta">價格基準：2026-06-04 · 高股息 ETF</div>
-          </div>
-          <div class="price-box">
-            <b>51.80</b>
-            <span class="delta-down">-0.85 / -1.61%</span>
-          </div>
-        </div>
-        <div class="signal">防禦屬性較 0050 強，仍受大盤情緒影響</div>
-        <p class="thesis">0056 今年配息回升到每單位 1 元，且規模已突破 6,000 億，代表存股與領息資金仍在。6 月 4 日股價跌幅小於 0050，顯示高股息在回檔盤中有相對抗震力。未來一週若市場繼續高檔震盪，0056 可能優於純市值型 ETF。</p>
-        <ul>
-          <li>偏多理由：配息能見度與規模優勢仍強，資金偏好防禦與現金流題材。</li>
-          <li>偏空理由：若權值與高息成分股同步被調節，0056 也難完全免疫。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>50.50 至 51.80</div>
-          <div><strong>停利觀察</strong>53.50 / 55.00</div>
-          <div><strong>停損觀察</strong>48.90</div>
-          <div><strong>出場條件</strong>跌破 50 且高息族群同步轉弱</div>
-        </div>
-      </article>
-
-      <article class="stock-card">
-        <div class="stock-head">
-          <div>
-            <h3>00662 富邦NASDAQ</h3>
-            <div class="stock-meta">價格基準：2026-06-04 · 海外科技 ETF</div>
-          </div>
-          <div class="price-box">
-            <b>122.05</b>
-            <span class="delta-down">-1.00 / -0.81%</span>
-          </div>
-        </div>
-        <div class="signal">趨勢仍多，但更吃美股科技情緒</div>
-        <p class="thesis">00662 受惠大型雲端業者上修資本支出、AI 基建需求仍強，且分割案通過後交易門檻有望下降，對中期資金面有利。不過 6 月 4 日美股科技板塊已出現壓力，下一交易日若 Nasdaq 續跌，00662 會先反映；未來一週則看 AI 主線是否恢復領漲。</p>
-        <ul>
-          <li>偏多理由：AI 基建支出仍是主驅動，分割預期有利後續流動性與散戶參與。</li>
-          <li>偏空理由：美元利率、科技高估值與美股回檔會直接壓縮短線表現。</li>
-        </ul>
-        <div class="kv">
-          <div><strong>進場觀察</strong>118.00 至 122.00 分批</div>
-          <div><strong>停利觀察</strong>126.00 / 132.00</div>
-          <div><strong>停損觀察</strong>114.50</div>
-          <div><strong>出場條件</strong>Nasdaq 擴大修正且跌破 118</div>
-        </div>
-      </article>
-    </section>
-
-    <section class="section panel">
-      <h2>主要風險提醒</h2>
-      <ul class="risk-list">
-        <li>地緣政治風險仍是本週最大變數，會同時影響油價、通膨預期、美債殖利率與全球股市風險偏好。</li>
-        <li>00642U 屬商品期貨 ETF，追蹤誤差與轉倉成本比一般股票 ETF 更重要，不能只看油價方向。</li>
-        <li>00679B 對長天期美債殖利率極敏感，若市場重新預期高利率維持更久，價格壓力會很直接。</li>
-        <li>0050、0056 與 2002 仍受台股外資資金面主導，若外資賣超延續，短線反彈力道會被壓抑。</li>
-        <li>00662 反映的是台灣掛牌價格，但核心風險來自美股科技股估值與 Nasdaq 波動。</li>
+    <section class="panel">
+      <h2>本次總結</h2>
+      <ul class="macro-list">
+        <li>今天六檔中只有 <strong>00679B</strong> 收紅，說明市場主軸回到利率與避險，而不是風險追逐。</li>
+        <li><strong>0050、00662</strong> 繼續受台積電與美國科技估值壓縮影響，短線仍偏弱，但中期主軸沒有被破壞。</li>
+        <li><strong>0056</strong> 雖然今天也跌，但相較市值型 ETF 仍屬較穩的承接池，觀察重點轉向資金是否回流高股息。</li>
+        <li><strong>2002</strong> 有鋼價與補庫存題材支撐，但 0050 換股剔除後，被動資金賣壓仍會壓抑表現。</li>
+        <li><strong>00642U</strong> 最看消息面與隔夜原油波動，若中東風險溢價退潮，容易繼續補跌。</li>
       </ul>
     </section>
 
-    <section class="section panel">
+    <section class="grid">
+      <article class="card">
+        <div class="tagline">高波動商品</div>
+        <h3>00642U｜期元大S&amp;P石油</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>28.31</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>高低區間</span>28.29 - 28.69</div>
+          <div class="metric"><span>短線判斷</span>偏空震盪</div>
+        </div>
+        <div class="view">
+          近期原油先因中東風險飆升，再因供應疑慮降溫而回吐。CME 6/8 指出 WTI 期貨已從高點回落，00642U 也從事件溢價轉成補跌結構。
+          若隔夜油價續弱，下一交易日容易先測低點。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：27.60-27.90 止跌再接，或重回 28.90 之上才考慮追價。</li>
+          <li>停利觀察：29.40-30.20。</li>
+          <li>停損觀察：跌破 27.30。</li>
+          <li>出場條件：油價續跌、折溢價擴大或台股開低走弱時，先降槓桿思維。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tagline">防守型利率交易</div>
+        <h3>00679B｜元大美債20年</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>26.51</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>漲跌</span>+0.15</div>
+          <div class="metric"><span>短線判斷</span>中性偏多</div>
+        </div>
+        <div class="view">
+          00679B 今天逆勢收紅，反映風險資金撤出後的避險需求。MoneyDJ 顯示 6/10 市價 26.51，元大基金頁 6/9 規模仍逾新台幣 1,851 億元，
+          代表流動性與關注度仍高；但關鍵還是在美國 20 年期殖利率，MacroMicro 6/10 顯示約 5.04%，仍在高位。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：26.30-26.45 分批，或帶量站回 26.70。</li>
+          <li>停利觀察：26.90-27.20。</li>
+          <li>停損觀察：跌破 26.10。</li>
+          <li>出場條件：若美債長端殖利率再創波段高點，先縮部位。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tagline">傳產事件單</div>
+        <h3>2002｜中鋼</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>18.70</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>高低區間</span>18.65 - 19.10</div>
+          <div class="metric"><span>短線判斷</span>中性偏弱</div>
+        </div>
+        <div class="view">
+          Yahoo 新聞上週提到中鋼 5 月出貨因歲修而下降，但 6 月拉貨動能看增；更早前 6 月盤價全面上調，也說明基本面不是最差的位置。
+          問題在於 0050 定審剔除中鋼，會讓被動資金在 6 月中下旬持續形成壓力。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：18.40-18.65 承接，或重新站回 19.10。</li>
+          <li>停利觀察：19.40-19.90。</li>
+          <li>停損觀察：跌破 18.20。</li>
+          <li>出場條件：若量縮反彈、無法收復 19 元整數關卡，先視為弱勢反抽。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tagline">台股核心權值</div>
+        <h3>0050｜元大台灣50</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>100.25</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>高低區間</span>100.20 - 102.95</div>
+          <div class="metric"><span>短線判斷</span>偏弱整理</div>
+        </div>
+        <div class="view">
+          0050 今天回到 100 元附近，反映台積電與大盤同步修正。近期利多仍在，包括規模突破 2 兆元與 6/19 生效的換股將提高 AI 供應鏈權重；
+          但在大盤單日重挫近 1,500 點的條件下，下一交易日先看止跌，不看硬拗反彈。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：99.20-100.00 低接，或重新站回 101.80。</li>
+          <li>停利觀察：103.80-106.00。</li>
+          <li>停損觀察：跌破 98.50。</li>
+          <li>出場條件：若台積電續弱且外資賣壓未收斂，先降低曝險。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tagline">高股息承接盤</div>
+        <h3>0056｜元大高股息</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>49.62</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>高低區間</span>49.59 - 51.05</div>
+          <div class="metric"><span>短線判斷</span>中性防守</div>
+        </div>
+        <div class="view">
+          0056 今天跌破 50 元，但相較成長型 ETF 仍屬防守型標的。Yahoo 與市場報導顯示 0056 今年仍是高人氣配息工具，
+          受益人基數大、資金回流速度快；若大盤續弱，它通常比 0050 更容易先穩。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：49.20-49.60 低接，或站回 50.30 再加碼。</li>
+          <li>停利觀察：50.90-51.80。</li>
+          <li>停損觀察：跌破 48.80。</li>
+          <li>出場條件：若高股息族群同步失守且量增下殺，先保留現金。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="tagline">美科技成長</div>
+        <h3>00662｜富邦NASDAQ</h3>
+        <div class="price-grid">
+          <div class="metric"><span>收盤</span>117.55</div>
+          <div class="metric"><span>日期</span>2026-06-10</div>
+          <div class="metric"><span>高低區間</span>117.30 - 118.35</div>
+          <div class="metric"><span>短線判斷</span>高震盪偏弱</div>
+        </div>
+        <div class="view">
+          00662 跟美國科技股連動最高，近期最大題材仍是分割案通過，市場普遍以 1 拆 5 的預期看待後續流動性改善；
+          但短線先面對的是 Nasdaq 在殖利率走高後的估值修正，因此 6/11 若美股續弱，00662 仍可能先測支撐。
+        </div>
+        <ul class="levels">
+          <li>進場觀察：116.20-117.00 分批，或重新站回 119.20。</li>
+          <li>停利觀察：121.80-124.50。</li>
+          <li>停損觀察：跌破 115.50。</li>
+          <li>出場條件：若美債殖利率續升且 Nasdaq 未止穩，先減碼成長部位。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>未來一週優先順序</h2>
+      <ul class="macro-list">
+        <li><strong>防守優先：</strong>00679B、0056。現在市場先找防禦，不是找速度。</li>
+        <li><strong>等止跌再看：</strong>0050、00662。中期邏輯仍在，但短線不應在大跌隔天硬接飛刀。</li>
+        <li><strong>事件短打：</strong>2002。鋼價與拉貨題材有支撐，但要尊重指數換股賣壓。</li>
+        <li><strong>高風險短單：</strong>00642U。只適合盯盤與有停損紀律的部位。</li>
+      </ul>
+      <p class="note">
+        主要風險提醒：如果 2026-06-10 晚間美股續跌、長天期美債殖利率再上衝，或原油消息面急轉，6 月 11 日開盤後六檔的觀察價位都可能被快速穿越。
+      </p>
+    </section>
+
+    <footer class="footer">
       <h2>資料來源</h2>
       <ul class="source-list">
-        <li><a href="https://www.twse.com.tw/holidaySchedule/holidaySchedule?queryYear=112&response=html">TWSE 市場開休市日期</a></li>
-        <li><a href="https://pchome.megatime.com.tw/">PChome 股市大盤頁</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid00642U.html">PChome 00642U 價量走勢圖</a></li>
-        <li><a href="https://tw.stock.yahoo.com/quote/00642U.TW/performance">Yahoo 00642U 績效頁</a></li>
-        <li><a href="https://tw.stock.yahoo.com/news/%E7%BE%8E%E4%BC%8A%E8%A1%9D%E7%AA%81%E6%8E%A8%E6%B2%B9%E5%83%B9%E9%A3%86%E6%BC%B2-%E7%BE%8E%E5%82%B5%E9%80%B1%E4%B8%89%E5%A0%B1%E5%83%B9%E8%B5%B0%E8%B7%8C-10%E5%B9%B4%E6%9C%9F%E6%AE%96%E5%88%A9%E7%8E%87%E5%8D%875-13%E5%80%8B%E5%9F%BA%E9%BB%9E-003159019.html">財訊快報：美債殖利率與油價</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid00679B.html">PChome 00679B 價量走勢圖</a></li>
-        <li><a href="https://api.yuantafunds.com/ECImage/ECBackstage/file/2026-05-04/ae8d659f27d54db0a833178140ca3c24.pdf">元大投信 00679B 配息公告</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid2002.html">PChome 2002 價量走勢圖</a></li>
-        <li><a href="https://www.nownews.com/news/6838283">NOWnews：中鋼 4 月稅前淨利轉正</a></li>
-        <li><a href="https://tw.stock.yahoo.com/news/%E5%9C%8B%E9%9A%9B%E9%8B%BC%E5%83%B9%E4%B8%8A%E6%BC%B2-%E4%B8%AD%E9%8B%BC6%E6%9C%88%E7%9B%A4%E5%83%B9%E5%85%A8%E9%9D%A2%E8%AA%BF%E6%BC%B2-072900493.html">Yahoo：中鋼 6 月盤價全面調漲</a></li>
-        <li><a href="https://www.cna.com.tw/news/afe/202605220114.aspx">CNA：中鋼第 2 季營運可期</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid0050.html">PChome 0050 價量走勢圖</a></li>
-        <li><a href="https://tw.stock.yahoo.com/news/0050%E9%87%8D%E8%BF%94%E7%99%BE%E5%85%83-%E6%8B%86%E8%82%A1%E4%B8%8D%E5%88%B0-%E5%B9%B4%E7%BF%BB%E5%80%8D-182%E8%90%AC%E8%82%A1%E6%B0%91%E4%B8%8A%E8%BB%8A%E6%88%90%E8%B4%8F%E5%AE%B6-083700132.html">Yahoo：0050 重返百元</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid0056.html">PChome 0056 價量走勢圖</a></li>
-        <li><a href="https://pchome.megatime.com.tw/news/cat2/20260506/77806455933477207003.html">PChome／NOWnews：0056 規模破 6,000 億</a></li>
-        <li><a href="https://pchome.megatime.com.tw/stock/sid00662.html">PChome 00662 價量走勢圖</a></li>
-        <li><a href="https://tw.stock.yahoo.com/news/00662%E5%88%86%E5%89%B2%E6%A1%88%E9%80%9A%E9%81%8E-%E5%8F%97%E6%83%A0nasdaq%E5%BF%AB%E9%80%9F%E5%85%A5%E5%B8%82%E6%96%B0%E5%88%B6-020700453.html">MoneyDJ：00662 分割案通過</a></li>
-        <li><a href="https://ww2.money-link.com.tw/TWStock/StockNews.aspx?SymId=00662">富聯網：00662 科技 ETF 新聞彙整</a></li>
+        <li><a href="https://www.twse.com.tw/holidaySchedule/holidaySchedule?response=html">TWSE 市場開休市日期</a>：確認 2026-06-10 非休市日。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20260601&response=json">TWSE 發行量加權股價指數歷史資料</a>：2026-06-10 指數收 43,225.54 點。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260601&stockNo=0050&response=json">TWSE 0050 日成交資訊</a>。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260601&stockNo=0056&response=json">TWSE 0056 日成交資訊</a>。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260601&stockNo=2002&response=json">TWSE 2002 日成交資訊</a>。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260601&stockNo=00642U&response=json">TWSE 00642U 日成交資訊</a>。</li>
+        <li><a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260601&stockNo=00662&response=json">TWSE 00662 日成交資訊</a>。</li>
+        <li><a href="https://tw.stock.yahoo.com/quote/00679B.TWO">Yahoo 股市 00679B.TWO</a>：2026-06-10 收盤 26.51。</li>
+        <li><a href="https://www.moneydj.com/etf/x/basic/basic0003.xdjhtm?etfid=00679b.tw">MoneyDJ 00679B ETF 資料</a>：近日日價與折溢價。</li>
+        <li><a href="https://www.yuantafunds.com/myfund/information/1151">元大投信 00679B 基金頁</a>：基金規模與淨值。</li>
+        <li><a href="https://www.macromicro.me/series/5551/20year-bond-yield">MacroMicro 美國 20 年期公債殖利率</a>。</li>
+        <li><a href="https://www.cmegroup.com/videos/2026/06/08/wti-crude-oil-futures-retraced-peak-as-tensions-softened-6-8-26.html">CME Group：2026-06-08 WTI 回吐漲幅</a>。</li>
+        <li><a href="https://udn.com/news/story/123006/9524183">聯合新聞網：00642U 重挫與油價 ETF 風險</a>。</li>
+        <li><a href="https://tw.stock.yahoo.com/news/%E7%94%A2%E7%B7%9A%E6%AD%B2%E4%BF%AE-%E4%B8%AD%E9%8B%BC5%E6%9C%88%E5%87%BA%E8%B2%A8%E9%99%8D-6%E6%9C%88%E6%8B%89%E8%B2%A8%E5%8B%95%E8%83%BD%E7%9C%8B%E5%A2%9E-004500937.html">Yahoo：中鋼 5 月出貨降、6 月拉貨動能看增</a>。</li>
+        <li><a href="https://tw.stock.yahoo.com/news/%E4%B8%AD%E9%8B%BC6%E6%9C%88%E7%9B%A4%E5%83%B9%E7%BA%8C%E6%8F%9A-%E4%B8%8B%E6%B8%B8%E7%A9%8D%E6%A5%B5%E5%9B%9E%E8%A3%9C%E5%BA%AB%E5%AD%98-%E9%8B%BC%E5%83%B9%E7%A9%A9%E6%AD%A5%E5%90%91%E4%B8%8A-113304496.html">Yahoo：中鋼 6 月盤價續揚</a>。</li>
+        <li><a href="https://www.cna.com.tw/news/afe/202606010252.aspx">中央社：0050 規模衝破 2 兆元</a>。</li>
+        <li><a href="https://news.cnyes.com/news/id/6486233">鉅亨：0050 換股提高 AI 權重、刪除中鋼</a>。</li>
+        <li><a href="https://tw.stock.yahoo.com/news/0050%E8%A1%9D%E7%A0%B4%E7%99%BE%E5%85%83%E5%89%B5%E5%88%86%E5%89%B2%E5%BE%8C%E6%96%B0%E5%A4%A9%E5%83%B9-%E4%B8%8D%E5%88%B01%E5%B9%B4%E8%82%A1%E5%83%B9%E7%BF%BB%E5%80%8D-033314147.html">Yahoo：0050 分割後股價重返百元</a>。</li>
+        <li><a href="https://tw.stock.yahoo.com/news/0056%E9%85%8D%E6%81%AF%E8%AE%8A1%E5%85%83%EF%BC%81%E8%BF%919%E5%80%8B%E6%9C%88%E6%9C%80%E9%AB%98-154%E8%90%AC%E4%BA%BA%E9%96%8B%E5%BF%83-072536014.html">Yahoo：0056 配息與受益人題材</a>。</li>
+        <li><a href="https://www.fubon.com/financialholdings/news/news_1260430_541916.htm">富邦投信：00662 分割案通過</a>。</li>
+        <li><a href="https://www.sinotrade.com.tw/richclub/aiinvest/00662%E5%AF%8C%E9%82%A6NASDAQ%E5%88%86%E5%89%B2%E5%85%A8%E6%94%BB%E7%95%A5-%E5%88%86%E5%89%B2%E5%80%8D%E6%95%B8-%E6%99%82%E7%A8%8B-%E6%8A%95%E7%A5%A8%E6%96%B9%E5%BC%8F%E8%88%87%E5%BD%B1%E9%9F%BF%E4%B8%80%E6%AC%A1%E7%9C%8B-69d59bbb575ddf184bd55693">永豐金 Richclub：00662 分割時程與影響</a>。</li>
       </ul>
-      <p class="footnote">註：部分網站可取得的最新報價日期略有差異，因此看板已在各卡片標示價格基準日。</p>
-    </section>
-  </div>
+    </footer>
+  </main>
 </body>
 </html>
