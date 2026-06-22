@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自選股交易日分析 2026-06-18</title>
+  <title>慧卿自選股交易日觀察 2026-06-22</title>
   <style>
     :root {
       --bg: #f4efe7;
-      --paper: rgba(255, 251, 245, 0.88);
+      --paper: rgba(255, 251, 245, 0.9);
       --paper-strong: #fffaf2;
       --ink: #1f2430;
       --muted: #596171;
@@ -39,9 +39,7 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
     .shell {
       width: min(1180px, calc(100% - 32px));
@@ -92,7 +90,7 @@
       width: 52px;
       height: 52px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.72);
       padding: 8px;
       border: 1px solid rgba(31, 36, 48, 0.08);
     }
@@ -110,11 +108,11 @@
     h1 {
       font-size: clamp(2rem, 4.4vw, 3.2rem);
       line-height: 1.08;
-      letter-spacing: -0.03em;
+      letter-spacing: 0;
     }
 
     .subcopy {
-      max-width: 78ch;
+      max-width: 80ch;
       color: var(--muted);
       font-size: 1rem;
     }
@@ -124,14 +122,12 @@
       gap: 18px;
     }
 
-    .hero-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+    .hero-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
     .metric {
       padding: 18px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.62);
       border: 1px solid rgba(31, 36, 48, 0.08);
     }
 
@@ -239,9 +235,7 @@
       color: var(--muted);
     }
 
-    li + li {
-      margin-top: 6px;
-    }
+    li + li { margin-top: 6px; }
 
     .card-note {
       padding: 14px 16px;
@@ -287,18 +281,16 @@
     }
 
     @media (max-width: 720px) {
-      .shell {
-        width: min(100% - 20px, 1180px);
-      }
+      .shell { width: min(100% - 20px, 1180px); }
 
       .hero, .panel, .card, footer {
         border-radius: 24px;
-      }
-
-      .hero, .panel, .card, footer {
         padding-left: 18px;
         padding-right: 18px;
       }
+
+      .brand { align-items: flex-start; }
+      .price-band { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -309,51 +301,51 @@
         <div class="brand">
           <img src="lily.svg" alt="Lily">
           <div>
-            <p class="eyebrow">Taipei Close Review</p>
-            <h1>自選股交易日分析 2026-06-18</h1>
+            <p class="eyebrow">Taipei Trading Day Review</p>
+            <h1>慧卿自選股交易日觀察 2026-06-22</h1>
           </div>
         </div>
         <p class="subcopy">
-          依 2026-06-18 台股收盤、近一週公告與新聞整理。下一個台股交易日為 2026-06-22，因 2026-06-19 端午節休市，以下價位僅供觀察，不保證報酬。
+          今天為台股開市日。因 TWSE 與 TPEx 日成交資料目前最後完整收盤日為 2026-06-18，以下以 6/18 收盤與 6/18 至 6/22 可取得新聞為基準，觀察 6/22 開市後與未來一週的非保證性風險區間。
         </p>
       </div>
       <div class="hero-grid">
         <div class="metric">
-          <span>更新時間</span>
-          <strong>2026-06-18 收盤後</strong>
+          <span>更新日期</span>
+          <strong>2026-06-22 台北時間</strong>
         </div>
         <div class="metric">
           <span>資料基準日</span>
-          <strong>2026-06-18</strong>
+          <strong>2026-06-18 收盤</strong>
         </div>
         <div class="metric">
-          <span>加權指數</span>
-          <strong>46,465.20 (+1.28%)</strong>
+          <span>交易日確認</span>
+          <strong>6/19 端午休市，6/22 開市</strong>
         </div>
         <div class="metric">
-          <span>下個交易日</span>
-          <strong>2026-06-22 週一</strong>
+          <span>觀察重點</span>
+          <strong>ETF 換股、FOMC、油價、美債利率</strong>
         </div>
       </div>
     </section>
 
     <section class="panel">
-      <h2>市場總覽</h2>
+      <h2>市場摘要</h2>
       <p class="subcopy">
-        6 月 18 日台股隨權值與金融同步反彈，但美國 6 月 17 日 FOMC 維持利率不變、政策口徑偏鷹，意味 6 月 22 日開盤仍要承受美股與美債殖利率波動的外部壓力。短線最明顯的事件，是 0050 與 0056 成分股調整在 6 月 18 日收盤後正式生效，以及國際油價因美伊終戰備忘錄與荷莫茲海峽恢復通行預期而快速回落。
+        6/18 收盤前後，0050、0056 等大型 ETF 換股生效並帶出台股尾盤巨量；6/19 因端午節休市，6/22 是連假後第一個交易日。海外面同時受 FOMC 維持利率、美債殖利率變動、Nasdaq 科技股評價與中東油價風險牽動。整體判斷偏向「權值 ETF 延續強勢但不追高、債券 ETF 區間整理、原油 ETF 波動偏高」。
       </p>
       <div class="summary-grid">
         <div class="summary-box">
-          <strong>短線主軸</strong>
-          台股權值與高股息 ETF 偏強，但美股科技與利率敏感資產要先消化聯準會訊號。
+          <strong>偏多因素</strong>
+          0050、0056 換股後更貼近 AI、PCB、記憶體與高股息資金輪動；0050、0056 在 6/12 至 6/18 分別上漲 5.25% 與 4.35%。
         </div>
         <div class="summary-box">
-          <strong>事件衝擊</strong>
-          0050、0056 的季度換股在 6 月 18 日收盤後生效，2002 同步面臨被 0050 剔除的被動資金壓力。
+          <strong>中性因素</strong>
+          00679B 受 FOMC 維持利率與長債殖利率拉鋸影響，6/18 收 27.04，短線仍看利率預期與匯率。
         </div>
         <div class="summary-box">
-          <strong>跨市場風險</strong>
-          油價一週急跌逾 15%，有利壓抑通膨但直接壓縮 00642U 表現；長天期美債則受 Fed 與殖利率路徑牽動。
+          <strong>偏空風險</strong>
+          00642U 6/12 至 6/18 下跌 12.77%，油價由地緣風險與停火訊息雙向拉扯，槓桿與期貨展期風險需放在第一順位。
         </div>
       </div>
     </section>
@@ -365,20 +357,20 @@
             <div class="ticker">00642U</div>
             <h2>期元大 S&amp;P 石油</h2>
           </div>
-          <div class="bias risk">短線偏弱</div>
+          <div class="bias risk">高波動觀望</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>24.11</div>
-          <div class="price-pill"><span>近 5 日變動</span>-12.77%</div>
-          <div class="price-pill"><span>當週高低</span>27.90 / 24.11</div>
-          <div class="price-pill"><span>下個交易日看法</span>先弱後震盪</div>
+          <div class="price-pill"><span>近 5 交易日</span>-12.77%</div>
+          <div class="price-pill"><span>區間高低</span>27.90 / 24.11</div>
+          <div class="price-pill"><span>一週判斷</span>反彈需油價配合</div>
         </div>
         <ul>
-          <li>美伊簽署終戰備忘錄、荷莫茲海峽恢復通行預期，國際油價一週重挫逾 15%，直接壓抑商品型 ETF 評價。</li>
-          <li>IEA 同步提醒 2027 年可能出現供給過剩，代表本波油價風險溢價正被快速擠出。</li>
-          <li>若 6 月 22 日國際油價沒有重新站回強勢區，00642U 容易延續弱勢整理。</li>
+          <li>國際油價在 6/11 至 6/17 明顯回落，CME 引述資料顯示 WTI 週均價較前週下跌逾一成，壓抑原油 ETF 追價意願。</li>
+          <li>中東衝突與停火談判消息仍可能快速改變原油期貨價格，00642U 又有期貨展期與槓桿波動特性，不適合用一般 ETF 方式加碼。</li>
+          <li>下一交易日若不能站回 24.80 至 25.00，短線仍以弱勢反彈看待；若跌破 23.80，代表賣壓延續。</li>
         </ul>
-        <div class="card-note">觀察價位：試單區 23.40 至 24.00，停利先看 24.90，續強再看 25.80；跌破 23.10 宜停損或縮碼。</div>
+        <div class="card-note">非保證觀察價：分批觀察 23.80 至 24.20；停利 25.20 / 26.00；停損 23.40；跌破 23.40 或油價續弱時先出場。</div>
       </article>
 
       <article class="card">
@@ -387,20 +379,20 @@
             <div class="ticker">00679B</div>
             <h2>元大美債 20 年</h2>
           </div>
-          <div class="bias neutral">中性偏多</div>
+          <div class="bias neutral">區間偏多</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>27.04</div>
-          <div class="price-pill"><span>6/18 漲跌</span>+0.86%</div>
-          <div class="price-pill"><span>當日區間</span>26.93 / 27.04</div>
-          <div class="price-pill"><span>下個交易日看法</span>利率主導</div>
+          <div class="price-pill"><span>近 5 交易日</span>+1.05%</div>
+          <div class="price-pill"><span>區間高低</span>27.04 / 26.68</div>
+          <div class="price-pill"><span>一週判斷</span>看殖利率回落</div>
         </div>
         <ul>
-          <li>6 月 17 日 FOMC 維持利率 3.50% 至 3.75%，短線對債市有利的是不再升息，但偏鷹表述限制反彈斜率。</li>
-          <li>00679B 收盤仍上漲，反映避險與息收需求尚在，顯示 26.8 元附近已有承接。</li>
-          <li>未來一週若美債殖利率回落，00679B 可續彈；反之若市場重新押注更久的高利率，漲幅會被壓回。</li>
+          <li>FOMC 6/17 維持利率不變，債券 ETF 的下一段行情仍取決於降息預期是否重新升溫。</li>
+          <li>元大投信 PCF 顯示 00679B 6/17 淨值約 26.9085，6/18 市價 27.04，短線已有小幅反映利率回落預期。</li>
+          <li>若美債殖利率回升，長天期債券久期風險會放大，短線不宜把 27 元上方視為無風險區。</li>
         </ul>
-        <div class="card-note">觀察價位：分批區 26.80 至 27.00，停利看 27.40 與 27.80；跌破 26.55 視為短線轉弱。</div>
+        <div class="card-note">非保證觀察價：26.80 至 27.00 分批；停利 27.45 / 27.80；停損 26.55；若殖利率快速上行則降低部位。</div>
       </article>
 
       <article class="card">
@@ -409,20 +401,20 @@
             <div class="ticker">2002</div>
             <h2>中鋼</h2>
           </div>
-          <div class="bias neutral">事件拉扯</div>
+          <div class="bias neutral">低檔整理</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>19.10</div>
-          <div class="price-pill"><span>近 5 日變動</span>+1.06%</div>
-          <div class="price-pill"><span>當週高低</span>19.30 / 18.60</div>
-          <div class="price-pill"><span>下個交易日看法</span>先看換股賣壓</div>
+          <div class="price-pill"><span>近 5 交易日</span>+1.06%</div>
+          <div class="price-pill"><span>區間高低</span>19.30 / 18.60</div>
+          <div class="price-pill"><span>一週判斷</span>19 元攻防</div>
         </div>
         <ul>
-          <li>中鋼 5 月合併營收 299.5 億元、年增 2.19%，鋼市從谷底回升的敘事仍在，基本面比前季穩。</li>
-          <li>但 2002 在 6 月 18 日收盤後被 0050 剔除，6 月 22 日要先消化被動資金調節壓力。</li>
-          <li>未來一週若鋼價續穩、外資賣壓不重，股價仍有機會守在 19 元附近震盪築底。</li>
+          <li>中鋼近期股東會與營運訊息偏向「景氣有復甦期待但仍需數據驗證」，鋼價與中國需求仍是核心變數。</li>
+          <li>0050 第二季換股將中鋼剔除，短期被動資金支撐降低；但 6/18 放量上漲至 19.10，顯示低檔仍有承接。</li>
+          <li>若 19.30 無法有效突破，未來一週較可能維持 18.60 至 19.50 箱型。</li>
         </ul>
-        <div class="card-note">觀察價位：承接區 18.70 至 18.95，停利看 19.60 與 19.90；跌破 18.35 代表型態轉差。</div>
+        <div class="card-note">非保證觀察價：18.70 至 19.00；停利 19.60 / 20.00；停損 18.35；若跌破 18.35 且量增，先保守出場。</div>
       </article>
 
       <article class="card">
@@ -431,20 +423,20 @@
             <div class="ticker">0050</div>
             <h2>元大台灣 50</h2>
           </div>
-          <div class="bias bull">中期偏多</div>
+          <div class="bias bull">強勢續看</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>107.30</div>
-          <div class="price-pill"><span>近 5 日變動</span>+5.25%</div>
-          <div class="price-pill"><span>當週高低</span>107.45 / 101.55</div>
-          <div class="price-pill"><span>下個交易日看法</span>高檔震盪</div>
+          <div class="price-pill"><span>近 5 交易日</span>+5.25%</div>
+          <div class="price-pill"><span>區間高低</span>107.45 / 101.55</div>
+          <div class="price-pill"><span>一週判斷</span>回檔找支撐</div>
         </div>
         <ul>
-          <li>台股加權指數 6 月 18 日反彈 1.28%，0050 受權值股帶動續強。</li>
-          <li>富時台灣 50 季度調整在 6 月 18 日收盤後生效，新增 AI 供應鏈成分，市場解讀偏正面。</li>
-          <li>0050 規模已突破 2 兆元、費率下滑，有利中期資金續留，但 6 月 22 日仍須觀察美股科技股是否被 Fed 壓抑。</li>
+          <li>0050 換股於 6/18 收盤後生效，新增貿聯-KY、創意、南電、臻鼎-KY，AI 與高速傳輸供應鏈權重更突出。</li>
+          <li>6/18 收在區間高位，短線趨勢偏多，但連假後若遇獲利了結，107 元上方追價風險升高。</li>
+          <li>未來一週觀察台積電、AI 伺服器與 PCB 類股是否接續放量，這會決定 0050 是否能挑戰 110 元。</li>
         </ul>
-        <div class="card-note">觀察價位：分批區 105.00 至 106.50，停利看 109.00 與 111.00；跌破 103.80 宜先退場觀望。</div>
+        <div class="card-note">非保證觀察價：105.50 至 106.80；停利 109.50 / 111.00；停損 103.80；若跌破 105 且大盤轉弱，改採防守。</div>
       </article>
 
       <article class="card">
@@ -453,20 +445,20 @@
             <div class="ticker">0056</div>
             <h2>元大高股息</h2>
           </div>
-          <div class="bias bull">穩中偏多</div>
+          <div class="bias bull">偏多但控追價</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>52.80</div>
-          <div class="price-pill"><span>近 5 日變動</span>+4.35%</div>
-          <div class="price-pill"><span>當週高低</span>52.85 / 50.50</div>
-          <div class="price-pill"><span>下個交易日看法</span>換股後續強</div>
+          <div class="price-pill"><span>近 5 交易日</span>+4.35%</div>
+          <div class="price-pill"><span>區間高低</span>52.85 / 50.50</div>
+          <div class="price-pill"><span>一週判斷</span>高息題材續熱</div>
         </div>
         <ul>
-          <li>0056 成分股在 6 月 18 日收盤後正式換血，新增中興電、遠傳、南亞、南亞科、華邦電，AI 與金融權重想像提升。</li>
-          <li>近五日漲幅優於大盤，代表市場已提前卡位換股與高股息資金回流。</li>
-          <li>未來一週只要台股不出現急跌，0056 相對有機會維持高檔整理，抗波動性仍優於市值型 ETF。</li>
+          <li>0056 換股新增中興電、遠傳、南亞、南亞科與華邦電，兼具電力、電信、塑化與記憶體題材。</li>
+          <li>6/18 收近波段高點，短線買盤仍強，但高股息 ETF 若遇除息預期落差或大盤修正，容易出現同步回檔。</li>
+          <li>下一交易日若站穩 52.40，仍有挑戰 53.60 的機會；跌破 51.80 則表示換股題材降溫。</li>
         </ul>
-        <div class="card-note">觀察價位：承接區 52.00 至 52.40，停利看 53.60 與 54.50；跌破 51.20 則短線優勢消失。</div>
+        <div class="card-note">非保證觀察價：52.00 至 52.40；停利 53.60 / 54.50；停損 51.20；若量縮跌破 51.80，降低追高部位。</div>
       </article>
 
       <article class="card">
@@ -475,48 +467,47 @@
             <div class="ticker">00662</div>
             <h2>富邦 NASDAQ</h2>
           </div>
-          <div class="bias neutral">外盤敏感</div>
+          <div class="bias neutral">科技股高檔震盪</div>
         </div>
         <div class="price-band">
           <div class="price-pill"><span>6/18 收盤</span>121.80</div>
-          <div class="price-pill"><span>近 5 日變動</span>+1.46%</div>
-          <div class="price-pill"><span>當週高低</span>123.90 / 119.55</div>
-          <div class="price-pill"><span>下個交易日看法</span>先看美股修正</div>
+          <div class="price-pill"><span>近 5 交易日</span>+1.46%</div>
+          <div class="price-pill"><span>區間高低</span>123.90 / 119.55</div>
+          <div class="price-pill"><span>一週判斷</span>看 Nasdaq 與匯率</div>
         </div>
         <ul>
-          <li>Nasdaq 5 月仍維持強勢，但 6 月 17 日 FOMC 後，美股科技股因偏鷹政策解讀而拉回。</li>
-          <li>00662 6 月 18 日台股收盤已先反映部分壓力，收跌 0.49%，短線彈性比 0050 更看美國科技股夜盤表現。</li>
-          <li>若 AI 主線資金未明顯撤退，未來一週仍有機會守在 120 元上方震盪；若美債殖利率續升，評價會被壓縮。</li>
+          <li>00662 6/18 小跌 0.49%，但近月績效仍強，市場焦點放在 Nasdaq 科技股與 AI 估值能否延續。</li>
+          <li>FOMC 維持利率不變，對成長股不算明顯利空，但若美債殖利率反彈，科技股估值壓力會快速增加。</li>
+          <li>台幣匯率與美股夜盤表現會影響折溢價，短線不宜只看台股盤中價格。</li>
         </ul>
-        <div class="card-note">觀察價位：分批區 119.50 至 121.00，停利看 124.50 與 127.00；跌破 117.80 建議先停損。</div>
+        <div class="card-note">非保證觀察價：120.00 至 121.50；停利 124.50 / 127.00；停損 117.80；若 Nasdaq 轉弱且跌破 120，先降風險。</div>
       </article>
     </section>
 
     <footer>
-      <h2>資料來源</h2>
+      <h2>資料來源與提醒</h2>
       <div class="source-grid">
         <div class="source-card">
-          <strong>交易日與收盤行情</strong>
-          <a href="https://www.twse.com.tw/zh/trading/holiday.html">TWSE 市場開休市日期</a>
-          <a href="https://www.twse.com.tw/zh/">TWSE 當日收盤與加權指數</a>
-          <a href="https://www.tpex.org.tw/">TPEx 債券 ETF 行情</a>
+          <strong>交易日與價格資料</strong>
+          <a href="https://www.twse.com.tw/zh/trading/holiday.html">TWSE 115 年市場開休市日期</a>
+          <a href="https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260622&stockNo=0050&response=json">TWSE 個股日成交資訊</a>
+          <a href="https://www.tpex.org.tw/www/zh-tw/afterTrading/tradingStock?code=00679B&date=2026/06/22&response=json">TPEx 00679B 日成交資訊</a>
         </div>
         <div class="source-card">
-          <strong>總體與海外市場</strong>
-          <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm">Federal Reserve 2026-06-17 FOMC 聲明</a>
-          <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm">Federal Reserve 經濟預測</a>
-          <a href="https://www.nasdaq.com/articles/may-2026-review-and-outlook">Nasdaq 2026 年 5 月市場回顧</a>
+          <strong>ETF 與重大題材</strong>
+          <a href="https://money.udn.com/money/story/5618/9578351">經濟日報：0050、0056 換股後 ETF 資金輪動</a>
+          <a href="https://www.managertoday.com.tw/articles/view/72307">經理人：0050、0056 成分股調整</a>
+          <a href="https://www.yuantaetfs.com/tradeInfo/pcf/00679B">元大投信：00679B PCF 與淨值資料</a>
         </div>
         <div class="source-card">
-          <strong>產業與標的新聞</strong>
-          <a href="https://money.udn.com/money/story/5599/9574274?from=edn_newestlist_rank">中央社: 美伊終戰備忘錄與油價回落</a>
-          <a href="https://news.cnyes.com/news/id/6503710">鉅亨網: IEA 指出原油供給過剩風險</a>
-          <a href="https://money.udn.com/money/story/124512/9548670">經濟日報: 0050、0056 成分股調整</a>
-          <a href="https://money.udn.com/search/tagging/1001/%E4%B8%AD%E9%8B%BC">經濟日報: 中鋼 5 月營收與鋼市訊息</a>
+          <strong>海外市場與產業</strong>
+          <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm">Federal Reserve：2026-06-17 FOMC 聲明</a>
+          <a href="https://www.cmegroup.com/cn-s/insights/media-partners/jlc/crude-oil-weekly-report-2026-06-18.html">CME Group：6/11-6/17 原油週報</a>
+          <a href="https://tw.stock.yahoo.com/news/%E4%B8%AD%E9%8B%BC%E8%82%A1%E6%9D%B1%E6%9C%83%E3%80%8B%E6%98%A5%E7%87%95%E4%BE%86%E4%BA%86%EF%BC%9F%E8%91%A3%E5%BA%A7%E9%BB%83%E5%BB%BA%E6%99%BA%E7%9C%8B%E5%A5%BD%EF%BC%9A%E4%B8%80%E8%B7%AF%E6%97%BA%E5%88%B07%E6%9C%88-005955515.html">Yahoo 股市：中鋼股東會與營運展望</a>
         </div>
       </div>
       <p class="footnote">
-        本頁由 GitHub `main` 分支更新後觸發 Netlify 自動部署設計；所有進出場、停利、停損價位僅為觀察區間，不構成投資建議。
+        本頁為公開資料整理與情境觀察，不是投資建議，也不保證進場、停利、停損或出場價位會實現。ETF 可能有折溢價、匯率、成分股調整、期貨展期與流動性風險；交易前請自行確認即時報價與自身風險承受度。
       </p>
     </footer>
   </div>
